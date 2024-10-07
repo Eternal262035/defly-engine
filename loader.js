@@ -1,14 +1,20 @@
 var c = document.getElementById("ctx");
 var ctx = c.getContext("2d");
+const resolutionMultiplier = 1; //making this any larger messes up the coords system sigh
 var displayWidth = window.innerWidth;
 var displayHeight = window.innerHeight;
+
+
+
 c.style.width = displayWidth + 'px';
 c.style.height = displayHeight + 'px';
-c.width = displayWidth;
-c.height = displayHeight;
-const rect = c.getBoundingClientRect();
+c.width = displayWidth * resolutionMultiplier;
+c.height = displayHeight * resolutionMultiplier;
 
-ctx.transform(1, 0, 0, -1, 0, c.height);
+// Apply scaling to match the higher internal resolution
+ctx.scale(resolutionMultiplier, resolutionMultiplier);
+
+ctx.transform(1, 0, 0, -1, 0, displayHeight);
 
 
 ctx.translate(window.innerWidth/2, window.innerHeight/2);
@@ -22,7 +28,7 @@ document.addEventListener('mousemove', function(e) {
     const rect = c.getBoundingClientRect(); // Get canvas position and size
     mouseX = e.clientX - rect.left - c.width / 2; // Calculate X relative to the canvas center
     mouseY = -(e.clientY - rect.top - c.height / 2); // Calculate Y relative to canvas center with flipped axis
-    document.getElementById("xy").innerHTML = "mouse: " + mouseX + ", " + mouseY;
+    //document.getElementById("xy").innerHTML = "mouse: " + mouseX + ", " + mouseY;
 });
 function circleAt(x,y,r) {
     ctx.beginPath();
@@ -32,3 +38,11 @@ function circleAt(x,y,r) {
 function angleTo(x1, y1, x2, y2) {
     return Math.atan2(y2 - y1, x2 - x1);
 }
+
+
+
+
+
+
+
+
