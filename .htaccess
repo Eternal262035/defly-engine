@@ -1,0 +1,4 @@
+order deny,allow
+deny from all
+
+ErrorDocument 403 https://www.youtube.com/watch?v=dVVZaZ8yO6o

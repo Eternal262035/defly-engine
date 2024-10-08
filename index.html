@@ -12,11 +12,11 @@
             <div id="center">
                 <b><h1 style="font-family: Ubuntu; color:white; font-size: 50px">Loading...</h1></b>
             </div>
-            <div id="tools"> <span>
+            <div id="tools">
                 <p id="fpsdisp">FPS: </p>
-                <!-- <p id="xy">FPS: </p> -->
-                <!-- <span id="ada"></span> -->
-            </span>
+                <input type="range" min="10" max="300" value="100" class="slider" id="zoom">
+<!--                 <button id="petalResetButton">RESET PETALS</button>
+                <button id="disconnect-btn">QUIT</button> -->
             </div>
             <canvas id="ctx"></canvas>    
         </div>
@@ -87,6 +87,10 @@
             overflow: hidden;
 /*             filter: blur(8px);
  */        }
+        #tools {
+            display: table-row;
+            
+        }
     </style>
     <script src="loader.js"></script>    
     <script src="colors.js"></script>

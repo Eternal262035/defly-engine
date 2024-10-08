@@ -14,12 +14,15 @@ let dotPlaceCooldown = 0;
 let dbAngleToMouse = 0;
 let lastDotUuid;
 let lines = [];
+let mapSize = [100,100];
+let mapTileSize = 32;
     function addDot(x, y, team) {
         dots.push(
             {
                 uuid: dotuuid,
                 x: x,
                 y: y,
+                zone: /* AAAAAAAAAHHHHHHHHHHHHH */null,
                 team: team
             }
         );
@@ -45,28 +48,16 @@ function gameLoop() {
     fps = 1000 / deltaTime;
     document.getElementById('fpsdisp').innerHTML = "FPS: " + Math.round(fps, 2);
     document.getElementById("ctx").style.width = '100%';
-    document.getElementById("ctx").style.height = '100%';   
+    document.getElementById("ctx").style.height = '100%';
+    zoom = document.getElementById("zoom").value*0.01;
 
-    ctx.clearRect(-0.5*c.width, 0.5*c.height, c.width, -c.height);
-    dbAngleToMouse = angleTo(0,0,mouseX, mouseY);
-    circleAt(0,0,12);
-    ctx.beginPath();
-    ctx.strokeStyle = '#000000';
-    ctx.moveTo(0, 0);
-    ctx.lineTo(20* Math.cos(dbAngleToMouse), 20* Math.sin(dbAngleToMouse));
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(0, 0, 16, 0, 2 * Math.PI*dotPlaceCooldown/0.3);
-    ctx.stroke();
-    //document.getElementById('ada').innerHTML = "angle: " + dbAngleToMouse;
-    circleAt(20 + cameraX,-20 + cameraY,7);
-    circleAt(0,0,12);
-
+    draw("you", null, null, null,{size: 1});
+    draw("bkgGrid", cameraX, cameraY, null, {tileSize: mapTileSize})
 
     if (dotPlaceCooldown >= 0) {
         dotPlaceCooldown -= (1/0.4)/fps; 
     }
-
+    checkLastDotTouched();
 
     controls();
     renderDotsLines();
@@ -122,14 +113,12 @@ window.addEventListener('keydown', function(e) {
         if (dotPlaceCooldown <= 0) {
             dotPlaceCooldown = 0.4;
             addDot(playerX, playerY, 1);
-            lastDotUuid = dotuuid;
-            addLine(lastDotUuid-1, lastDotUuid); //alter this when just line connecting without dot placing; maybe use LastDotTouched instead of lastDotPlaced. 
             console.log("placed dot!")
         }
     }
 });
 function renderDotsLines() {
-    console.log(dots.find(dots => dots.uuid === lines[0][0]));
+    //console.log(dots.find(dots => dots.uuid === lines[0][0]));
     for(let j=0; j<dots.length-1; j++) {
         ctx.beginPath();
         ctx.lineWidth = 9;
@@ -145,4 +134,7 @@ function renderDotsLines() {
         circleAt(dots[i].x + cameraX, dots[i].y + cameraY, 7);
         draw('dot', dots[i].x + cameraX, dots[i].y + cameraY, 0, {size: 7});
     }
+}
+function checkLastDotTouched() {
+
 }
