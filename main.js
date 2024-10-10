@@ -50,9 +50,9 @@ function gameLoop() {
     document.getElementById("ctx").style.width = '100%';
     document.getElementById("ctx").style.height = '100%';
     zoom = document.getElementById("zoom").value*0.01;
-
+    ctx.clearRect(-0.5*c.width, 0.5*c.height, c.width, -c.height);
+    draw("bkgGrid", cameraX, cameraY, null, {tileSize: mapTileSize});
     draw("you", null, null, null,{size: 1});
-    draw("bkgGrid", cameraX, cameraY, null, {tileSize: mapTileSize})
 
     if (dotPlaceCooldown >= 0) {
         dotPlaceCooldown -= (1/0.4)/fps; 

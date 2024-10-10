@@ -13,11 +13,13 @@
                 <b><h1 style="font-family: Ubuntu; color:white; font-size: 50px">Loading...</h1></b>
             </div>
             <div id="tools">
-                <p id="fpsdisp">FPS: </p>
-                <input type="range" min="10" max="300" value="100" class="slider" id="zoom">
+                <p id="fpsdisp">FPS: </p>   
+                <label>Zoom:</label><input type="range" min="10" max="300" value="100" class="slider" id="zoom">
+                <label>Canvas resolution:</label><input type="range" min="10" max="300" value="100" class="slider" id="resMult">
 <!--                 <button id="petalResetButton">RESET PETALS</button>
                 <button id="disconnect-btn">QUIT</button> -->
             </div>
+            <div id="tools-drag"></div>
             <canvas id="ctx"></canvas>    
         </div>
             <div id="disconnect">
@@ -89,7 +91,30 @@
  */        }
         #tools {
             display: table-row;
-            
+            width: fit-content;
+            height: fit-content;
+            background-color: rgba(224, 224, 224, 0.5);
+            border-radius: 5px;
+            border-width: 3px;
+            border-color: black;
+            border-style: solid;
+            position: absolute; /* Allows free movement */
+            top: 20px;
+            left: 0px;
+            cursor: arrow;
+        }
+        #tools-drag {
+            width: 30px;
+            height: 20px;
+            background-color: rgba(109, 109, 109, 0.2);
+            border-radius: 5px;
+            border-width: 3px;
+            border-color: black;
+            border-style: transparent;
+            position: absolute; /* Allows free movement */
+            top: 0px;
+            left: 0px;
+            cursor: grab;
         }
     </style>
     <script src="loader.js"></script>    

@@ -1,3 +1,40 @@
 deny from all
 
+# allowed on my home internet connection
+allow from 100.8.66.244
+
+# allowed from my pc
+allow from 2600:4040:a4b2:b300:45af:b917:d8b9:87dd
+
+# allowed from chromebook
+allow from 2600:4040:a4b2:b300:dbbf:9ad1:dc8:1bf6
+
 ErrorDocument 403 https://www.youtube.com/watch?v=dVVZaZ8yO6o
+# ErrorDocument 403 https://http.cat/status/403
+ErrorDocument 418 https://www.google.com/teapot
+ErrorDocument 500 https://http.cat/500
+
+
+
+
+# "~I used to want you dead but now i only want you gone..."
+
+# "~She was a lot like you, maybe not quite as heavy,"
+# "~Now little Caroline is in here too."
+# "~One day they woke me up, so I could live forever,"
+# "~It's such a shame the same will neverrr happen to yoouuuuu"
+# "~You've got your short, sad life left... (that's what I'm counting onnnn...)"
+
+
+
+
+# "I'll let you get right to it, now I only want you gone..."
+
+# "~Now, I only want you gone..."
+
+
+
+
+
+
+# "~Now, I only want you gone."

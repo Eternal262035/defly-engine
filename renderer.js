@@ -3,7 +3,7 @@ function draw(id, x, y, angle, aux) {
     y = y*zoom;
     switch (id) {
         case "you":
-            ctx.clearRect(-0.5*c.width, 0.5*c.height, c.width, -c.height);
+
             dbAngleToMouse = angleTo(0,0,mouseX, mouseY);
             circleAt(0,0,12*aux.size*zoom);
             ctx.beginPath();
@@ -17,7 +17,6 @@ function draw(id, x, y, angle, aux) {
             //document.getElementById('ada').innerHTML = "angle: " + dbAngleToMouse;
             circleAt((20 + cameraX)*zoom,(-20 + cameraY)*zoom,7*aux.size*zoom);
             break;
-
         case "bkgGrid":
             aux.tileSize = aux.tileSize * zoom;
             ctx.beginPath();
@@ -33,13 +32,21 @@ function draw(id, x, y, angle, aux) {
             }
             ctx.stroke(); */
 
-            for (let i=-0.5*(c.width/aux.tileSize); i<=0.5*(c.width/aux.tileSize)+1; i++) {
-                ctx.moveTo((-0.5*c.width+(i)*aux.tileSize)+x%aux.tileSize, 0.5*c.height);
-                ctx.lineTo((-0.5*c.width+(i)*aux.tileSize)+x%aux.tileSize, -0.5*c.height);
+            for (let i=0; i<=0.5*(c.width/aux.tileSize)+1; i++) {
+                ctx.moveTo(((i)*aux.tileSize)+x%aux.tileSize, 0.5*c.height);
+                ctx.lineTo(((i)*aux.tileSize)+x%aux.tileSize, -0.5*c.height);
+                ctx.moveTo(((-i)*aux.tileSize)+x%aux.tileSize, 0.5*c.height);
+                ctx.lineTo(((-i)*aux.tileSize)+x%aux.tileSize, -0.5*c.height);
+            }
+            for (let i=0; i<=0.5*(c.height/aux.tileSize)+1; i++) {
+                ctx.moveTo(0.5*c.height, ((i)*aux.tileSize)+y%aux.tileSize);
+                ctx.lineTo(-0.5*c.height, ((i)*aux.tileSize)+y%aux.tileSize);
+                ctx.moveTo(0.5*c.height, ((-i)*aux.tileSize)+y%aux.tileSize);
+                ctx.lineTo(-0.5*c.height, ((-i)*aux.tileSize)+y%aux.tileSize);
             }
             ctx.stroke();
 
-
+            //ctx.drawImage('lib/defly grid generic.svg', x-aux.tileSize*8, y-aux.tileSize*8);
             break;
 
         case "dot":
@@ -47,11 +54,12 @@ function draw(id, x, y, angle, aux) {
              * size - size of the dot
              * 
             */
+           aux.size = aux.size * zoom;
             ctx.beginPath();
             ctx.arc(x, y, aux.size, 0, 2 * Math.PI);
             ctx.fillStyle = colors.playerTeamFill;
             ctx.strokeStyle = colors.playerTeamBorder;
-            ctx.lineWidth = 5;
+            ctx.lineWidth = 5*zoom;
             ctx.stroke();
             ctx.fill();
             break;
