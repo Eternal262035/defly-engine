@@ -70,7 +70,6 @@ document.addEventListener('mousemove', (e) => {
     toolbar.style.top = (e.clientY - offsetY + 20) + 'px';
     }
 });
-
 document.addEventListener('mouseup', () => {
     isDragging = false;
     toolbar_drag.style.cursor = 'grab';

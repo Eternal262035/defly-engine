@@ -5,17 +5,19 @@ function draw(id, x, y, angle, aux) {
         case "you":
 
             dbAngleToMouse = angleTo(0,0,mouseX, mouseY);
+            ctx.strokeStyle = colors.towerHealthBarGreenFill;
+            ctx.lineWidth = 5*zoom;
+            ctx.beginPath();
+            //ctx.moveTo(0,0);
+            ctx.arc(0, 0, 16*aux.size*zoom, Math.PI*0.5, Math.PI*0.5+(2 * Math.PI)*(dotPlaceCooldown_ref-dotPlaceCooldown)/dotPlaceCooldown_ref);
+            //ctx.lineTo(0,0);
+            ctx.stroke();
             circleAt(0,0,12*aux.size*zoom);
             ctx.beginPath();
-            ctx.strokeStyle = '#000000';
+            ctx.strokeStyle = colors.black;
             ctx.moveTo(0, 0);
             ctx.lineTo(20* Math.cos(dbAngleToMouse)*zoom, 20* Math.sin(dbAngleToMouse)*zoom);
             ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(0, 0, 16*aux.size*zoom, 0, 2 * Math.PI*dotPlaceCooldown/0.3);
-            ctx.stroke();
-            //document.getElementById('ada').innerHTML = "angle: " + dbAngleToMouse;
-            circleAt((20 + cameraX)*zoom,(-20 + cameraY)*zoom,7*aux.size*zoom);
             break;
         case "bkgGrid":
             aux.tileSize = aux.tileSize * zoom;
